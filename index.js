@@ -33,15 +33,15 @@ const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/html');
   res.end('<h1>Hello, User!</h1> <h3> Welcome Home</h3>\n');
-  Log();
+  Log(req.socket.remoteAddress);
 });
 
 server.listen(port, () => {
   console.log(`Server is running on port number::${port}`);
 });
 
-function Log()
+function Log(addr)
 {
-  const newCon = new Con( { state: "WAITING_PLAYER_TWO", port: port, playerCount:3 } );
+  const newCon = new Con( { state: "WAITING_PLAYER_TWO", port: port, playerCount:addr } );
   newCon.save();
 }
