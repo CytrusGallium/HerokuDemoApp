@@ -4,8 +4,6 @@ const http = require('http');
 const port = process.env.PORT || 5000;
 const uri = process.env.MONGODB_URI;
 
-console.log("URL = " + uri);
-
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/html');
