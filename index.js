@@ -42,6 +42,6 @@ server.listen(port, () => {
 
 function Log(addr)
 {
-  const newCon = new Con( { state: "WAITING_PLAYER_TWO", port: port, playerCount:addr } );
+  const newCon = new Con( { state: addr, port: port, playerCount:0 } );
   newCon.save();
 }
