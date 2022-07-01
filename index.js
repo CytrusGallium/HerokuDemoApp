@@ -4,6 +4,31 @@ const http = require('http');
 const port = process.env.PORT || 5000;
 const uri = process.env.MONGODB_URI;
 
+//#region Database
+const mongoose = require('mongoose');
+mongoose.connect(uri);
+const db = mongoose.connection;
+db.on('error', (error) => console.error(error));
+db.once('open', () => console.log('Connected to database.'));
+
+const conSchema = new mongoose.Schema({
+    state: {
+        type: String,
+        required: true
+    },
+    playerCount: {
+        type: Number,
+        required: true
+    },
+    port: {
+        type: Number,
+        required: true
+    }
+}, { collection: 'connections' })
+
+//const Game = mongoose.model('Game', gameSchema, 'games');
+//#endregion
+
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/html');
