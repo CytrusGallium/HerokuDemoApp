@@ -26,7 +26,11 @@ const conSchema = new mongoose.Schema({
     }
 }, { collection: 'connections' })
 
-//const Game = mongoose.model('Game', gameSchema, 'games');
+const Con = mongoose.model('Connection', conSchema, 'connections');
+
+const newCon = new Con( { state: "WAITING_PLAYER_TWO", port: 1, playerCount:2 } );
+newCon.save();
+
 //#endregion
 
 const server = http.createServer((req, res) => {
