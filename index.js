@@ -27,18 +27,21 @@ const conSchema = new mongoose.Schema({
 }, { collection: 'connections' })
 
 const Con = mongoose.model('Connection', conSchema, 'connections');
-
-const newCon = new Con( { state: "WAITING_PLAYER_TWO", port: 1, playerCount:2 } );
-newCon.save();
-
 //#endregion
 
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/html');
   res.end('<h1>Hello, User!</h1> <h3> Welcome Home</h3>\n');
+  Log();
 });
 
 server.listen(port, () => {
   console.log(`Server is running on port number::${port}`);
 });
+
+function Log()
+{
+  const newCon = new Con( { state: "WAITING_PLAYER_TWO", port: port, playerCount:3 } );
+  newCon.save();
+}
